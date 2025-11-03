@@ -1,4 +1,4 @@
-# IA para Primeros Auxilios 🚑
+1# IA para Primeros Auxilios 🚑
 
 Descripción breve
 -----------------
@@ -64,9 +64,9 @@ Guía para colaborar
 
 Contacto y colaboración
 -----------------------
-- Contacto principal: contacto@ia-primeros-auxilios.org
+- Contacto principal: planetazuzu@gmail.com
 - GitHub: https://github.com/planetazuzu/ia-primeros-auxilios
-- Propuestas institucionales: colaboracion@ia-primeros-auxilios.org
+- Propuestas institucionales: planetazuzu@gmail.com
 
 Consideraciones éticas y limitaciones
 ------------------------------------
