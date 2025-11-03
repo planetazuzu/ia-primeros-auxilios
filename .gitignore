@@ -1,0 +1,36 @@
+# Sistemas y temporales
+.DS_Store
+Thumbs.db
+
+# Archivos de paquete / dependencias locales
+node_modules/
+venv/
+__pycache__/
+
+# Archivos de editor
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Archivos temporales comunes
+*.tmp
+*.log
+*.aux
+*.out
+
+# Grandes binarios / medios que no deben subirse (sugerencia)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.zip
+*.tar.gz
+*.iso
+
+# Archivos exportados por herramientas ofimáticas
+~$*
+
+# Ignore large data or datasets (adjust as needed)
+data/
+logs/
