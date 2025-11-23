@@ -1,4 +1,6 @@
-# Repositorio colaborativo de recursos educativos reutilizables sobre primeros auxilios y emergencias sanitarias
+# Repositorio de Recursos Educativos - IA Primeros Auxilios
+
+Repositorio colaborativo de recursos educativos reutilizables sobre primeros auxilios y emergencias sanitarias.
 
 Este espacio reúne protocolos, manuales, infografías, vídeos y textos orientados a la formación, divulgación y entrenamiento de herramientas educativas basadas en IA en el ámbito de los primeros auxilios.
 
@@ -24,15 +26,16 @@ Educativo, accesible, basado en evidencia y respetuoso con la autoría.
 
 ## 📂 Estructura de carpetas
 
-- `protocolos/` → Fichas rápidas y protocolos de actuación
-- `guias/` → Manuales y presentaciones didácticas
-- `infografias/` → Imágenes e infografías educativas
-- `videos/` → Enlaces o descripciones de vídeos demostrativos
-- `textos/` → Artículos, listados, casos clínicos, etc.
-- `enlaces/` → Enlaces a recursos externos
-- `README.md` → Este archivo
-- `CONTRIBUTING.md` → Guía detallada para colaborar
-- `LICENSE` → Licencia Creative Commons BY-SA 4.0
+```
+protocolos/    → Fichas rápidas y protocolos de actuación
+guias/         → Manuales y presentaciones didácticas
+infografias/   → Imágenes e infografías educativas
+videos/        → Enlaces o descripciones de vídeos demostrativos
+textos/        → Artículos, listados, casos clínicos, etc.
+enlaces/       → Enlaces a recursos externos
+documentos/    → Documentos generales
+templates/     → Plantillas reutilizables
+```
 
 ## 🧩 Ejemplos de contenido esperado
 
@@ -42,43 +45,33 @@ Educativo, accesible, basado en evidencia y respetuoso con la autoría.
 - **Vídeos**: enlaces con timestamps y transcripciones o subtítulos cuando sea posible.
 - **Textos**: artículos, listas de materiales, checklists y casos clínicos.
 
+## 📝 Cómo contribuir
+
+Lee la [Guía de Contribución](CONTRIBUTING.md) para conocer el proceso detallado.
+
+### Resumen rápido
+
+1. Cada recurso debe ir acompañado de un archivo `.md` con metadata
+2. Usa nombres descriptivos y normalizados
+3. Respeta los derechos de autor y cita las fuentes
+4. Prioriza materiales con licencias abiertas (CC BY, CC BY-SA)
+
 ## ⚖️ Licencia
 
 Este proyecto está bajo la Licencia **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**.
 
 Puedes compartir y adaptar los materiales para cualquier propósito, incluso comercial, siempre que:
 
-1.  Atribuyas al autor original.
-2.  Licencies tus modificaciones bajo los mismos términos.
-3.  Respetes los derechos de autor de terceros.
+1. Atribuyas al autor original
+2. Licencies tus modificaciones bajo los mismos términos
+3. Respetes los derechos de autor de terceros
+
+Ver [LICENSE](LICENSE) para más detalles.
+
+## 🤝 Comunidad
+
+Este repositorio es parte del proyecto de IA para Primeros Auxilios. Los recursos aquí almacenados se utilizan para entrenar y mejorar herramientas educativas basadas en inteligencia artificial.
 
 ---
 
-## 🛠️ Configuración Técnica (Para Desarrolladores)
-
-Este repositorio también contiene una aplicación web para facilitar la contribución y visualización de recursos.
-
-### Requisitos
-
-- Node.js & npm
-
-### Instalación y Ejecución
-
-```sh
-# Instalar dependencias
-npm install
-
-# Configurar variables de entorno (ver env.example)
-cp env.example .env
-
-# Iniciar servidor de desarrollo
-npm run dev
-```
-
-### Configuración .env
-
-```env
-VITE_GITHUB_TOKEN=tu_token_aqui
-VITE_GITHUB_OWNER=planetazuzu
-VITE_GITHUB_REPO=ia-primeros-auxilios
-```
+**Nota**: Este repositorio contiene únicamente los recursos educativos. La aplicación web para contribuir recursos se encuentra en un repositorio separado.
