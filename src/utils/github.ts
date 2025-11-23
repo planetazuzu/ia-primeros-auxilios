@@ -108,7 +108,7 @@ async function toBase64(content: string | ArrayBuffer | File | Blob): Promise<st
  */
 async function getDefaultBranchSha(baseBranch: string = 'main'): Promise<string> {
   try {
-    const response = await api.get(`/git/refs/heads/${baseBranch}`);
+    const response = await api.get(`/git/refs/heads/${baseBranch}?t=${new Date().getTime()}`);
     return response.data.object.sha;
   } catch (error: any) {
     // Si main no existe, intentar con master
@@ -285,7 +285,8 @@ export async function githubListRepositoryFiles(
     console.log(`📂 Listando archivos en: ${path || 'raíz'}`);
     
     const url = path ? `/contents/${path}` : '/contents';
-    const response = await api.get(url);
+    const timestamp = new Date().getTime();
+    const response = await api.get(`${url}?t=${timestamp}`);
 
     const files: RepositoryFile[] = response.data.map((item: any) => ({
       name: item.name,
@@ -357,8 +358,8 @@ export async function listAllResources(): Promise<{ success: boolean; files?: Re
     console.log('📂 Listando todos los recursos del repositorio...');
     
     const allFiles: RepositoryFile[] = [];
-    // Carpetas reales del repositorio: documentos, guias, infografias, protocolos, templates, videos
-    const folders = ['protocolos', 'guias', 'infografias', 'videos', 'documentos', 'templates'];
+    // Carpetas reales del repositorio: documentos, guias, infografias, protocolos, templates, videos, textos, enlaces
+    const folders = ['protocolos', 'guias', 'infografias', 'videos', 'documentos', 'templates', 'textos', 'enlaces'];
     
     // Listar archivos de cada carpeta
     for (const folder of folders) {

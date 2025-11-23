@@ -22,11 +22,13 @@ export default function Recursos() {
 
   const loadAllResources = async () => {
     setLoading(true);
+    console.log('🔄 Iniciando carga de recursos...');
 
     try {
       // Validar token
       const token = import.meta.env.VITE_GITHUB_TOKEN;
       if (!token) {
+        console.error('❌ Token no encontrado');
         toast.error('Token de GitHub no configurado. Por favor, configura VITE_GITHUB_TOKEN en tu archivo .env');
         setLoading(false);
         return;
@@ -34,8 +36,11 @@ export default function Recursos() {
 
       // Cargar todos los recursos
       const result = await listAllResources();
+      console.log('📦 Resultado de listAllResources:', result);
       
       if (result.success && result.files) {
+        console.log(`✅ Se encontraron ${result.files.length} archivos base`);
+        
         // Cargar metadata para cada archivo
         const resourcesWithMetadata = await Promise.all(
           result.files.map(async (file) => {
@@ -72,9 +77,11 @@ export default function Recursos() {
           })
         );
         
+        console.log('✨ Recursos procesados con metadata:', resourcesWithMetadata);
         setResources(resourcesWithMetadata);
         toast.success(`${resourcesWithMetadata.length} recursos cargados`);
       } else {
+        console.error('❌ Error al cargar recursos:', result.error);
         toast.error(result.error || 'Error al cargar los recursos del repositorio');
       }
     } catch (error: any) {
