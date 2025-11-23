@@ -78,9 +78,9 @@ export function ResourceList({ resources, loading }: ResourceListProps) {
               filteredResources.map((resource, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors gap-3 sm:gap-0"
                 >
-                  <div className="flex items-center gap-3 flex-1">
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
                     <FileText className="h-5 w-5 text-primary flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-sm truncate">{resource.name}</p>
@@ -88,20 +88,24 @@ export function ResourceList({ resources, loading }: ResourceListProps) {
                         {formatFileSize(resource.size)}
                       </p>
                     </div>
-                    <Badge variant="outline" className="flex-shrink-0">
+                  </div>
+                  
+                  <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto pl-8 sm:pl-0">
+                    <Badge variant="outline" className="flex-shrink-0 text-xs">
                       {getFileType(resource.path)}
                     </Badge>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="ml-2 flex-shrink-0 h-8 w-8 p-0"
+                      asChild
+                    >
+                      <a href={resource.downloadUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4" />
+                        <span className="sr-only">Ver recurso</span>
+                      </a>
+                    </Button>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="ml-2 flex-shrink-0"
-                    asChild
-                  >
-                    <a href={resource.downloadUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </Button>
                 </div>
               ))
             )}

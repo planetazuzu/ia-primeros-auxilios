@@ -13,22 +13,22 @@ export default function Home() {
       <div className="absolute inset-0 bg-pattern opacity-30"></div>
       
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+      <div className="container mx-auto px-4 py-12 md:py-24 relative z-10">
+        <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
           <div className="space-y-4 animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-foreground leading-tight">
               Contribuye con Recursos Educativos de{' '}
-              <span className="text-gradient animate-glow">
+              <span className="text-gradient animate-glow block sm:inline">
                 Primeros Auxilios
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Comparte protocolos, guías, infografías y recursos que ayudarán a entrenar 
               una IA educativa de código abierto
             </p>
           </div>
 
-          <div className="relative rounded-3xl overflow-hidden shadow-xl max-w-3xl mx-auto hover-lift animate-float">
+          <div className="relative rounded-3xl overflow-hidden shadow-xl max-w-3xl mx-auto hover-lift animate-float mx-4 sm:mx-auto">
             <div className="absolute inset-0 bg-gradient-primary opacity-20 blur-3xl"></div>
             <img 
               src={heroImage} 
@@ -37,10 +37,10 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
             <Button
               size="lg"
-              className="text-lg px-8 shadow-lg hover:shadow-glow hover-lift transition-all"
+              className="w-full sm:w-auto text-base md:text-lg px-8 shadow-lg hover:shadow-glow hover-lift transition-all h-12 md:h-14"
               onClick={() => navigate('/upload')}
             >
               <Upload className="mr-2 h-5 w-5" />
@@ -49,7 +49,7 @@ export default function Home() {
             <Button
               size="lg"
               variant="outline"
-              className="text-lg px-8 glass-effect hover-lift hover:shadow-md transition-all"
+              className="w-full sm:w-auto text-base md:text-lg px-8 glass-effect hover-lift hover:shadow-md transition-all h-12 md:h-14"
               onClick={() => navigate('/recursos')}
             >
               <BookOpen className="mr-2 h-5 w-5" />
@@ -58,7 +58,7 @@ export default function Home() {
             <Button
               size="lg"
               variant="outline"
-              className="text-lg px-8 glass-effect hover-lift hover:shadow-md transition-all"
+              className="w-full sm:w-auto text-base md:text-lg px-8 glass-effect hover-lift hover:shadow-md transition-all h-12 md:h-14"
               onClick={() => navigate('/repository')}
             >
               <Library className="mr-2 h-5 w-5" />

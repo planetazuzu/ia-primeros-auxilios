@@ -94,23 +94,23 @@ export default function Upload() {
         </Button>
 
         <Card>
-          <CardHeader>
-            <CardTitle className="text-3xl">Subir Recurso Educativo</CardTitle>
-            <CardDescription>
+          <CardHeader className="p-4 lg:p-6">
+            <CardTitle className="text-2xl lg:text-3xl">Subir Recurso Educativo</CardTitle>
+            <CardDescription className="text-sm lg:text-base">
               Completa el formulario para contribuir con un recurso de primeros auxilios
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-4 lg:p-6 pt-0 lg:pt-0">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 lg:space-y-8">
                 {/* Resource Type Selection */}
                 <FormField
                   control={form.control}
                   name="tipo"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base">Tipo de recurso *</FormLabel>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      <FormLabel className="text-base lg:text-lg font-semibold">Tipo de recurso *</FormLabel>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-4">
                         {resourceTypes.map((type) => (
                           <ResourceTypeCard
                             key={type.value}
@@ -133,9 +133,9 @@ export default function Upload() {
                   name="titulo"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Título *</FormLabel>
+                      <FormLabel className="text-base">Título *</FormLabel>
                       <FormControl>
-                        <Input placeholder="Ej: Protocolo de RCP básico" {...field} />
+                        <Input placeholder="Ej: Protocolo de RCP básico" {...field} className="h-12 lg:h-10 text-base lg:text-sm" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -143,16 +143,16 @@ export default function Upload() {
                 />
 
                 {/* Language & Author */}
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
                   <FormField
                     control={form.control}
                     name="idioma"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Idioma *</FormLabel>
+                        <FormLabel className="text-base">Idioma *</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className="h-12 lg:h-10 text-base lg:text-sm">
                               <SelectValue />
                             </SelectTrigger>
                           </FormControl>
@@ -173,9 +173,9 @@ export default function Upload() {
                     name="autor"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Autor/a (opcional)</FormLabel>
+                        <FormLabel className="text-base">Autor/a (opcional)</FormLabel>
                         <FormControl>
-                          <Input placeholder="Tu nombre o anónimo" {...field} />
+                          <Input placeholder="Tu nombre o anónimo" {...field} className="h-12 lg:h-10 text-base lg:text-sm" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -190,9 +190,9 @@ export default function Upload() {
                     name="enlace"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Enlace al recurso *</FormLabel>
+                        <FormLabel className="text-base">Enlace al recurso *</FormLabel>
                         <FormControl>
-                          <Input type="url" placeholder="https://..." {...field} />
+                          <Input type="url" placeholder="https://..." {...field} className="h-12 lg:h-10 text-base lg:text-sm" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -200,11 +200,12 @@ export default function Upload() {
                   />
                 ) : (
                   <div className="space-y-2">
-                    <Label>Archivo *</Label>
+                    <Label className="text-base">Archivo *</Label>
                     <Input
                       type="file"
                       accept={watchedType === 'video' ? 'video/*' : watchedType === 'infografia' ? 'image/*' : '.pdf,.doc,.docx'}
                       onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                      className="h-12 lg:h-10 text-base lg:text-sm py-3 lg:py-2"
                     />
                     {selectedFile && (
                       <p className="text-sm text-muted-foreground">
@@ -220,11 +221,11 @@ export default function Upload() {
                   name="descripcion"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Descripción *</FormLabel>
+                      <FormLabel className="text-base">Descripción *</FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="Describe el contenido del recurso..."
-                          className="min-h-[100px]"
+                          className="min-h-[120px] text-base lg:text-sm"
                           {...field}
                         />
                       </FormControl>
@@ -239,10 +240,11 @@ export default function Upload() {
                   name="fuentes"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Fuentes (opcional)</FormLabel>
+                      <FormLabel className="text-base">Fuentes (opcional)</FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder="Referencias, enlaces o fuentes del contenido..."
+                          className="min-h-[80px] text-base lg:text-sm"
                           {...field}
                         />
                       </FormControl>
@@ -252,8 +254,8 @@ export default function Upload() {
                 />
 
                 {/* Confirmations */}
-                <div className="space-y-4 border border-border rounded-lg p-6 bg-muted/30">
-                  <h3 className="font-semibold text-foreground">Confirmaciones requeridas</h3>
+                <div className="space-y-4 border border-border rounded-lg p-4 lg:p-6 bg-muted/30">
+                  <h3 className="font-semibold text-foreground text-lg lg:text-base">Confirmaciones requeridas</h3>
                   
                   <FormField
                     control={form.control}
@@ -264,10 +266,11 @@ export default function Upload() {
                           <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
+                            className="h-5 w-5 lg:h-4 lg:w-4 mt-1"
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
-                          <FormLabel className="font-normal">
+                          <FormLabel className="font-normal text-base lg:text-sm">
                             Acepto publicar este recurso bajo licencia <strong>CC BY-SA 4.0</strong>
                           </FormLabel>
                           <FormMessage />
@@ -285,10 +288,11 @@ export default function Upload() {
                           <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
+                            className="h-5 w-5 lg:h-4 lg:w-4 mt-1"
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
-                          <FormLabel className="font-normal">
+                          <FormLabel className="font-normal text-base lg:text-sm">
                             Confirmo que este recurso será usado exclusivamente con <strong>fines didácticos</strong>
                           </FormLabel>
                           <FormMessage />
@@ -306,10 +310,11 @@ export default function Upload() {
                           <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
+                            className="h-5 w-5 lg:h-4 lg:w-4 mt-1"
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
-                          <FormLabel className="font-normal">
+                          <FormLabel className="font-normal text-base lg:text-sm">
                             Confirmo que este recurso <strong>no contiene datos sensibles</strong> ni información personal
                           </FormLabel>
                           <FormMessage />
@@ -319,7 +324,7 @@ export default function Upload() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full">
+                <Button type="submit" size="lg" className="w-full h-12 lg:h-10 text-lg lg:text-base">
                   Generar recurso
                 </Button>
               </form>

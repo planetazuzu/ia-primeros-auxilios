@@ -174,24 +174,24 @@ export default function GestionarRecursos() {
         <Button
           variant="ghost"
           onClick={() => navigate('/recursos')}
-          className="mb-6"
+          className="mb-6 pl-0 sm:pl-4"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Volver a Recursos
         </Button>
 
         <Card className="mb-6 bg-slate-900/50 border-slate-800">
-          <CardHeader>
-            <CardTitle className="text-2xl text-slate-100">📌 Gestionar Recursos</CardTitle>
-            <CardDescription className="text-slate-400">
+          <CardHeader className="p-4 lg:p-6">
+            <CardTitle className="text-xl lg:text-2xl text-slate-100">📌 Gestionar Recursos</CardTitle>
+            <CardDescription className="text-sm lg:text-base text-slate-400">
               Solicita cambios, eliminaciones o reclasificaciones de recursos mediante Issues de GitHub
             </CardDescription>
           </CardHeader>
           {selectedFile && (
-            <CardContent>
-              <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
-                <p className="text-sm text-slate-400 mb-1">Archivo seleccionado:</p>
-                <p className="text-slate-100 font-mono text-sm">{selectedFile.path}</p>
+            <CardContent className="p-4 lg:p-6 pt-0 lg:pt-0">
+              <div className="bg-slate-800/50 rounded-lg p-3 lg:p-4 border border-slate-700 overflow-hidden">
+                <p className="text-xs lg:text-sm text-slate-400 mb-1">Archivo seleccionado:</p>
+                <p className="text-slate-100 font-mono text-xs lg:text-sm truncate" title={selectedFile.path}>{selectedFile.path}</p>
               </div>
             </CardContent>
           )}

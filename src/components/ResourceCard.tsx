@@ -109,25 +109,25 @@ export function ResourceCard({ file, metadata, onRequestChanges }: ResourceCardP
 
   return (
     <Card className="h-full flex flex-col hover-lift hover:shadow-xl glass-effect transition-all duration-300 bg-gradient-card border-2">
-      <CardHeader className="pb-3">
+      <CardHeader className="p-4 lg:p-6 pb-3 lg:pb-4">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2">
             <div className="p-2 rounded-lg bg-gradient-primary/20 shadow-sm">
               {getIcon()}
             </div>
-            <CardTitle className="text-lg font-semibold text-foreground line-clamp-2">
+            <CardTitle className="text-base lg:text-lg font-semibold text-foreground line-clamp-2">
               {title}
             </CardTitle>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 mt-2">
-          <Badge variant="outline" className={getTypeColor()}>
+          <Badge variant="outline" className={`${getTypeColor()} text-xs`}>
             {resourceType}
           </Badge>
           {metadata?.tags && metadata.tags.length > 0 && (
             <>
               {metadata.tags.slice(0, 3).map((tag, idx) => (
-                <Badge key={idx} variant="outline" className="bg-slate-800/50 text-slate-400 border-slate-700">
+                <Badge key={idx} variant="outline" className="bg-slate-800/50 text-slate-400 border-slate-700 text-xs">
                   <Tag className="h-3 w-3 mr-1" />
                   {tag}
                 </Badge>
@@ -137,33 +137,33 @@ export function ResourceCard({ file, metadata, onRequestChanges }: ResourceCardP
         </div>
       </CardHeader>
 
-      <CardContent className="flex-1">
-        <CardDescription className="text-slate-400 line-clamp-3 mb-4">
+      <CardContent className="flex-1 p-4 lg:p-6 pt-0 lg:pt-0">
+        <CardDescription className="text-sm lg:text-base text-slate-400 line-clamp-3 mb-4">
           {description}
         </CardDescription>
         
-        <div className="flex flex-col gap-2 text-sm text-slate-500">
+        <div className="flex flex-col gap-2 text-xs lg:text-sm text-slate-500">
           {file.updatedAt && (
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
+              <Calendar className="h-3 w-3 lg:h-4 lg:w-4" />
               <span>Actualizado {formatDate(file.updatedAt)}</span>
             </div>
           )}
           {file.size && (
             <div className="flex items-center gap-2">
-              <FileText className="h-4 w-4" />
+              <FileText className="h-3 w-3 lg:h-4 lg:w-4" />
               <span>{formatSize(file.size)}</span>
             </div>
           )}
         </div>
       </CardContent>
 
-      <CardFooter className="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+      <CardFooter className="flex flex-wrap gap-2 p-4 lg:p-6 pt-4 border-t border-slate-800">
         {file.downloadUrl && (
           <Button
             size="sm"
             variant="outline"
-            className="flex-1 bg-slate-800/50 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-slate-100"
+            className="flex-1 bg-slate-800/50 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-slate-100 h-10 lg:h-9 text-sm"
             asChild
           >
             <a href={file.downloadUrl} download target="_blank" rel="noopener noreferrer">
@@ -175,23 +175,23 @@ export function ResourceCard({ file, metadata, onRequestChanges }: ResourceCardP
         <Button
           size="sm"
           variant="outline"
-          className="flex-1 bg-slate-800/50 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-slate-100"
+          className="flex-1 bg-slate-800/50 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-slate-100 h-10 lg:h-9 text-sm"
           asChild
         >
           <a href={githubUrl} target="_blank" rel="noopener noreferrer">
             <ExternalLink className="h-4 w-4 mr-2" />
-            Ver en GitHub
+            GitHub
           </a>
         </Button>
         {onRequestChanges && (
           <Button
             size="sm"
             variant="outline"
-            className="bg-slate-800/50 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-slate-100"
+            className="bg-slate-800/50 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-slate-100 h-10 lg:h-9 text-sm"
             onClick={() => onRequestChanges(file)}
           >
             <Edit className="h-4 w-4 mr-2" />
-            Solicitar cambios
+            Cambios
           </Button>
         )}
       </CardFooter>

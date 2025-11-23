@@ -1,21 +1,17 @@
 import { useState, useCallback } from 'react';
 import { 
-  githubCreateBranch, 
-  githubUploadFile, 
-  githubCreatePullRequest 
+  githubUploadFile
 } from '@/utils/github';
 import { ResourcePreview, ResourceFormData } from '@/types/resource';
-import { slugify } from '@/utils/slugify';
 import { toast } from 'sonner';
 
-export type UploadStep = 'idle' | 'branch' | 'file' | 'metadata' | 'pr' | 'success' | 'error';
+export type UploadStep = 'idle' | 'file' | 'metadata' | 'success' | 'error';
 
 export interface UploadState {
   step: UploadStep;
   progress: number;
   error?: string;
-  prUrl?: string;
-  prNumber?: number;
+  commitUrl?: string;
 }
 
 export interface UseGithubUploadReturn {
@@ -29,6 +25,7 @@ const RETRY_DELAY = 2000; // 2 segundos
 
 /**
  * Hook para gestionar el flujo completo de subida a GitHub
+ * Sube archivos directamente a la rama main sin crear Pull Requests
  * Incluye manejo de errores, retries y estados de progreso
  */
 export function useGithubUpload(): UseGithubUploadReturn {
@@ -92,34 +89,18 @@ export function useGithubUpload(): UseGithubUploadReturn {
         return;
       }
 
-      // Generar nombre de rama
-      const timestamp = Date.now();
-      const branchName = `add-resource-${slugify(preview.titulo)}-${timestamp}`;
+      const owner = import.meta.env.VITE_GITHUB_OWNER || 'organization';
+      const repo = import.meta.env.VITE_GITHUB_REPO || 'first-aid-resources';
       
-      console.log('🚀 Iniciando flujo de subida a GitHub');
+      console.log('🚀 Iniciando subida directa a GitHub');
       console.log(`📝 Recurso: ${preview.titulo}`);
-      console.log(`🌿 Rama: ${branchName}`);
+      console.log(`📂 Carpeta: ${preview.suggestedFolder} (clasificado como ${preview.tipo})`);
+      console.log(`🎯 Subiendo directamente a rama main`);
 
-      // Paso 1: Crear rama
-      updateState({ step: 'branch', progress: 10 });
-      console.log('📌 Paso 1/4: Creando rama...');
-      
-      const branchResult = await retryOperation(
-        () => githubCreateBranch(branchName),
-        'crear rama'
-      );
-
-      if (!branchResult.success) {
-        throw new Error(branchResult.error || 'Error al crear la rama');
-      }
-      
-      updateState({ progress: 30 });
-      toast.success('Rama creada exitosamente');
-
-      // Paso 2: Subir archivo (si existe)
+      // Paso 1: Subir archivo (si existe)
       if (formData.file || formData.enlace) {
-        updateState({ step: 'file', progress: 40 });
-        console.log('📌 Paso 2/4: Subiendo archivo...');
+        updateState({ step: 'file', progress: 20 });
+        console.log('📌 Paso 1/2: Subiendo archivo directamente a main...');
         
         let fileContent: string | File | Blob;
         let fileName = preview.suggestedFileName;
@@ -143,10 +124,10 @@ export function useGithubUpload(): UseGithubUploadReturn {
         
         const fileResult = await retryOperation(
           () => githubUploadFile({
-            branch: branchName,
+            branch: 'main', // Subir directamente a main
             filePath,
             content: fileContent,
-            message: `Add resource: ${preview.titulo}`,
+            message: `Añadir recurso: ${preview.titulo}`,
           }),
           'subir archivo'
         );
@@ -162,18 +143,18 @@ export function useGithubUpload(): UseGithubUploadReturn {
         updateState({ progress: 60 });
       }
 
-      // Paso 3: Subir metadata
+      // Paso 2: Subir metadata
       updateState({ step: 'metadata', progress: 70 });
-      console.log('📌 Paso 3/4: Subiendo metadata...');
+      console.log('📌 Paso 2/2: Subiendo metadata directamente a main...');
       
       const metadataPath = `${preview.suggestedFolder}/${preview.suggestedFileName}.md`;
       
       const metadataResult = await retryOperation(
         () => githubUploadFile({
-          branch: branchName,
+          branch: 'main', // Subir directamente a main
           filePath: metadataPath,
           content: preview.metadata,
-          message: `Add metadata for: ${preview.titulo}`,
+          message: `Añadir metadata: ${preview.titulo}`,
         }),
         'subir metadata'
       );
@@ -182,54 +163,21 @@ export function useGithubUpload(): UseGithubUploadReturn {
         throw new Error(metadataResult.error || 'Error al subir la metadata');
       }
       
-      updateState({ progress: 85 });
+      updateState({ progress: 95 });
       toast.success('Metadata subida exitosamente');
 
-      // Paso 4: Crear Pull Request
-      updateState({ step: 'pr', progress: 90 });
-      console.log('📌 Paso 4/4: Creando Pull Request...');
-      
-      const prTitle = `Nuevo recurso: ${preview.titulo}`;
-      const prBody = `## Nuevo recurso educativo
-
-**Tipo:** ${preview.tipo}
-**Título:** ${preview.titulo}
-**Carpeta:** \`${preview.suggestedFolder}\`
-
-### Descripción
-${formData.descripcion}
-
-${formData.autor ? `**Autor/a:** ${formData.autor}\n` : ''}
-${formData.fuentes ? `**Fuentes:** ${formData.fuentes}\n` : ''}
-
----
-
-Este PR fue creado automáticamente desde la aplicación de contribución de recursos.
-`;
-
-      const prResult = await retryOperation(
-        () => githubCreatePullRequest({
-          title: prTitle,
-          body: prBody,
-          head: branchName,
-          base: 'main',
-        }),
-        'crear Pull Request'
-      );
-
-      if (!prResult.success) {
-        throw new Error(prResult.error || 'Error al crear el Pull Request');
-      }
+      // Generar URL del commit
+      const commitUrl = `https://github.com/${owner}/${repo}/tree/main/${preview.suggestedFolder}`;
       
       updateState({ 
         step: 'success', 
         progress: 100,
-        prUrl: prResult.prUrl,
-        prNumber: prResult.prNumber,
+        commitUrl,
       });
       
-      console.log('✅ Flujo completado exitosamente');
-      toast.success('Pull Request creado exitosamente');
+      console.log('✅ Recurso subido exitosamente a main');
+      console.log(`🔗 Ver en: ${commitUrl}`);
+      toast.success('Recurso subido exitosamente al repositorio');
 
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || error.message || 'Error desconocido durante la subida';

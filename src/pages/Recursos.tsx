@@ -99,10 +99,11 @@ export default function Recursos() {
   return (
     <div className="min-h-screen bg-background py-12">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4 sm:gap-0">
           <Button
             variant="ghost"
             onClick={() => navigate('/')}
+            className="pl-0 sm:pl-4"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver
@@ -111,6 +112,7 @@ export default function Recursos() {
             variant="outline"
             onClick={loadAllResources}
             disabled={loading}
+            className="w-full sm:w-auto"
           >
             <RefreshCw className={`mr-2 h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
             Actualizar
@@ -118,12 +120,12 @@ export default function Recursos() {
         </div>
 
         <Card className="mb-6 bg-slate-900/50 border-slate-800">
-          <CardContent className="pt-6">
+          <CardContent className="p-4 lg:p-6">
             <div className="flex items-center gap-3 mb-2">
-              <BookOpen className="h-6 w-6 text-slate-300" />
-              <h1 className="text-3xl font-bold text-slate-100">📚 Recursos Subidos</h1>
+              <BookOpen className="h-5 w-5 lg:h-6 lg:w-6 text-slate-300" />
+              <h1 className="text-2xl lg:text-3xl font-bold text-slate-100">Recursos Subidos</h1>
             </div>
-            <p className="text-slate-400">
+            <p className="text-sm lg:text-base text-slate-400">
               Explora todos los recursos educativos de primeros auxilios disponibles en el repositorio
             </p>
           </CardContent>

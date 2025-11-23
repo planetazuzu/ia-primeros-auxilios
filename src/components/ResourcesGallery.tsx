@@ -128,7 +128,7 @@ export function ResourcesGallery({ resources, loading, onRequestChanges }: Resou
       {/* Controles de búsqueda y ordenación */}
       <Card className="bg-slate-900/50 border-slate-800">
         <CardContent className="pt-6">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col lg:flex-row gap-4">
             {/* Búsqueda */}
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -136,16 +136,18 @@ export function ResourcesGallery({ resources, loading, onRequestChanges }: Resou
                 placeholder="Buscar recursos..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-slate-800/50 border-slate-700 text-slate-100"
+                className="pl-10 bg-slate-800/50 border-slate-700 text-slate-100 h-12 lg:h-10 text-base lg:text-sm"
               />
             </div>
 
-            {/* Ordenación */}
-            <div className="flex gap-2">
+            {/* Controles de ordenación y vista */}
+            <div className="flex flex-wrap gap-2">
               <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortBy)}>
-                <SelectTrigger className="w-[140px] bg-slate-800/50 border-slate-700 text-slate-100">
-                  <ArrowUpDown className="h-4 w-4 mr-2" />
-                  <SelectValue />
+                <SelectTrigger className="flex-1 min-w-[140px] bg-slate-800/50 border-slate-700 text-slate-100 h-12 lg:h-10">
+                  <div className="flex items-center truncate">
+                    <ArrowUpDown className="h-4 w-4 mr-2 flex-shrink-0" />
+                    <SelectValue />
+                  </div>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="fecha">Fecha</SelectItem>
@@ -157,30 +159,30 @@ export function ResourcesGallery({ resources, loading, onRequestChanges }: Resou
 
               <Button
                 variant="outline"
-                size="sm"
+                size="icon"
                 onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                className="bg-slate-800/50 border-slate-700 text-slate-100 hover:bg-slate-700"
+                className="bg-slate-800/50 border-slate-700 text-slate-100 hover:bg-slate-700 h-12 w-12 lg:h-10 lg:w-10 flex-shrink-0"
               >
                 {sortOrder === 'asc' ? '↑' : '↓'}
               </Button>
 
               {/* Vista */}
-              <div className="flex border border-slate-700 rounded-md">
+              <div className="flex border border-slate-700 rounded-md h-12 lg:h-10">
                 <Button
                   variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                  size="sm"
+                  size="icon"
                   onClick={() => setViewMode('grid')}
-                  className="rounded-r-none bg-slate-800/50 hover:bg-slate-700"
+                  className="rounded-r-none bg-slate-800/50 hover:bg-slate-700 h-full w-12 lg:w-10"
                 >
-                  <Grid className="h-4 w-4" />
+                  <Grid className="h-5 w-5 lg:h-4 lg:w-4" />
                 </Button>
                 <Button
                   variant={viewMode === 'list' ? 'default' : 'ghost'}
-                  size="sm"
+                  size="icon"
                   onClick={() => setViewMode('list')}
-                  className="rounded-l-none bg-slate-800/50 hover:bg-slate-700"
+                  className="rounded-l-none bg-slate-800/50 hover:bg-slate-700 h-full w-12 lg:w-10"
                 >
-                  <List className="h-4 w-4" />
+                  <List className="h-5 w-5 lg:h-4 lg:w-4" />
                 </Button>
               </div>
             </div>
