@@ -1,93 +1,84 @@
-# IA para Primeros Auxilios - Gestor de Recursos Didácticos
+# Repositorio colaborativo de recursos educativos reutilizables sobre primeros auxilios y emergencias sanitarias
 
-## Descripción del Proyecto
+Este espacio reúne protocolos, manuales, infografías, vídeos y textos orientados a la formación, divulgación y entrenamiento de herramientas educativas basadas en IA en el ámbito de los primeros auxilios.
 
-Plataforma colaborativa para contribuir con recursos educativos de primeros auxilios. Comparte protocolos, guías e infografías para entrenar una IA de código abierto.
+## 🎯 Propósito y enfoque
 
-## Cómo editar este código
+### Propósito
 
-**Usar tu IDE preferido**
+Centralizar recursos abiertos, de calidad y bien documentados que puedan ser utilizados por educadores, profesionales de la salud y herramientas educativas (incluyendo IA) para mejorar la respuesta en situaciones de emergencia.
 
-Puedes clonar este repositorio y trabajar localmente.
+### Tipo de materiales
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Protocolos de actuación, fichas rápidas, guías completas (PDF/presentaciones), infografías, enlaces a vídeos demostrativos y artículos didácticos.
 
-Follow these steps:
+### Enfoque
+
+Educativo, accesible, basado en evidencia y respetuoso con la autoría.
+
+## 🧭 Objetivos del proyecto
+
+- **Educación**: facilitar materiales claros y prácticos para la formación en primeros auxilios.
+- **Accesibilidad**: promover formatos accesibles (textos claros, imágenes con descripciones, subtítulos en vídeos).
+- **Colaboración abierta**: fomentar una comunidad global que aporte, revise y actualice recursos de forma continua.
+
+## 📂 Estructura de carpetas
+
+- `protocolos/` → Fichas rápidas y protocolos de actuación
+- `guias/` → Manuales y presentaciones didácticas
+- `infografias/` → Imágenes e infografías educativas
+- `videos/` → Enlaces o descripciones de vídeos demostrativos
+- `textos/` → Artículos, listados, casos clínicos, etc.
+- `enlaces/` → Enlaces a recursos externos
+- `README.md` → Este archivo
+- `CONTRIBUTING.md` → Guía detallada para colaborar
+- `LICENSE` → Licencia Creative Commons BY-SA 4.0
+
+## 🧩 Ejemplos de contenido esperado
+
+- **Protocolos**: fichas rápidas (RCP, hemorragias, obstrucción de vía aérea, shock, quemaduras).
+- **Guías**: manuales o presentaciones listos para usar en formación.
+- **Infografías**: con descripción alternativa (alt text) y versiones en alta resolución.
+- **Vídeos**: enlaces con timestamps y transcripciones o subtítulos cuando sea posible.
+- **Textos**: artículos, listas de materiales, checklists y casos clínicos.
+
+## ⚖️ Licencia
+
+Este proyecto está bajo la Licencia **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**.
+
+Puedes compartir y adaptar los materiales para cualquier propósito, incluso comercial, siempre que:
+
+1.  Atribuyas al autor original.
+2.  Licencies tus modificaciones bajo los mismos términos.
+3.  Respetes los derechos de autor de terceros.
+
+---
+
+## 🛠️ Configuración Técnica (Para Desarrolladores)
+
+Este repositorio también contiene una aplicación web para facilitar la contribución y visualización de recursos.
+
+### Requisitos
+
+- Node.js & npm
+
+### Instalación y Ejecución
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Instalar dependencias
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Configurar variables de entorno (ver env.example)
+cp env.example .env
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Iniciar servidor de desarrollo
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Configuración .env
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-- Axios (para GitHub API)
-
-## Configuración de GitHub API
-
-Para que la aplicación funcione correctamente, necesitas configurar las variables de entorno:
-
-1. **Copia el archivo de ejemplo:**
-
-   ```sh
-   cp env.example .env
-   ```
-
-2. **Obtén un token de GitHub:**
-
-   - Ve a [GitHub Settings > Developer settings > Personal access tokens > Tokens (classic)](https://github.com/settings/tokens)
-   - Genera un nuevo token con permisos `repo` (necesario para crear ramas, subir archivos y crear PRs)
-
-3. **Configura las variables en `.env`:**
-
-   ```env
-   VITE_GITHUB_TOKEN=tu_token_aqui
-   VITE_GITHUB_OWNER=tu_organizacion_o_usuario
-   VITE_GITHUB_REPO=nombre-del-repositorio
-   ```
-
-4. **Reinicia el servidor de desarrollo** después de configurar las variables.
-
-**Nota:** El archivo `.env` está en `.gitignore` y no se subirá al repositorio por seguridad.
-
-## Cómo desplegar este proyecto
-
-Puedes desplegar este proyecto en cualquier servicio de hosting estático como Vercel, Netlify, GitHub Pages, etc.
-
-Para construir el proyecto para producción:
-
-```sh
-npm run build
+```env
+VITE_GITHUB_TOKEN=tu_token_aqui
+VITE_GITHUB_OWNER=planetazuzu
+VITE_GITHUB_REPO=ia-primeros-auxilios
 ```
-
-Los archivos compilados estarán en la carpeta `dist/`.
