@@ -1,24 +1,12 @@
-# Repositorio de Recursos Educativos - IA Primeros Auxilios
+# IA Primeros Auxilios 🤖
 
-Repositorio colaborativo de recursos educativos reutilizables sobre primeros auxilios y emergencias sanitarias.
+> Repositorio de recursos educativos sobre primeros auxilios y emergencias sanitarias.
 
-Este espacio reúne protocolos, manuales, infografías, vídeos y textos orientados a la formación, divulgación y entrenamiento de herramientas educativas basadas en IA en el ámbito de los primeros auxilios.
+![Estado](https://img.shields.io/badge/Estado-Activo-green)
+![License](https://img.shields.io/badge/License-CC%20BY--SA%204.0-blue)
+![Recursos](https://img.shields.io/badge/Recursos-Open%20Source-green)
 
-## 🎯 Propósito y enfoque
-
-### Propósito
-
-Centralizar recursos abiertos, de calidad y bien documentados que puedan ser utilizados por educadores, profesionales de la salud y herramientas educativas (incluyendo IA) para mejorar la respuesta en situaciones de emergencia.
-
-### Tipo de materiales
-
-Protocolos de actuación, fichas rápidas, guías completas (PDF/presentaciones), infografías, enlaces a vídeos demostrativos y artículos didácticos.
-
-### Enfoque
-
-Educativo, accesible, basado en evidencia y respetuoso con la autoría.
-
-## 🧭 Objetivos del proyecto
+## 👤 Autor
 
 - **Educación**: facilitar materiales claros y prácticos para la formación en primeros auxilios.
 - **Accesibilidad**: promover formatos accesibles (textos claros, imágenes con descripciones, subtítulos en vídeos).
@@ -71,6 +59,11 @@ Ver [LICENSE](LICENSE) para más detalles.
 ## 🤝 Comunidad
 
 Este repositorio es parte del proyecto de IA para Primeros Auxilios. Los recursos aquí almacenados se utilizan para entrenar y mejorar herramientas educativas basadas en inteligencia artificial.
+
+---
+
+**Javier Fernández** · [@planetazuzu](https://github.com/planetazuzu)  
+TES · Developer · La Rioja 🇪🇸
 
 ---
 
